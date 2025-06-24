@@ -5,7 +5,6 @@ const ConveyorDiagram = ({ data }) => {
   const sensorActive = (sensor) => data?.[sensor] || false;
   const isAlarmActive = data?.alarm || false;
   
-  // Determine flap position
   const flapPosition = data?.clapeta || "S7 - Mijloc";
   const getFlap = () => {
     if (flapPosition.includes("S6")) return "left";
@@ -15,49 +14,36 @@ const ConveyorDiagram = ({ data }) => {
 
   return (
     <div style={{ display: 'flex', gap: '2rem', padding: '1rem', backgroundColor: '#f8f9fa' }}>
-      {/* Main Conveyor System Diagram */}
       <div style={{ flex: 2 }}>
         <svg width="600" height="500" viewBox="0 0 600 500" style={{ border: '2px solid #333', backgroundColor: 'white' }}>
-          {/* Title */}
           <text x="50" y="30" fontSize="18" fontWeight="bold" fill="#333">Masca procesului</text>
           
-          {/* Hopper at top */}
           <polygon points="250,50 280,50 290,80 240,80" fill="#ddd" stroke="#333" strokeWidth="2"/>
           <polygon points="245,80 285,80 275,100 255,100" fill="#ddd" stroke="#333" strokeWidth="2"/>
           
-          {/* Band 1 (Conveyor 1) */}
           <rect x="100" y="120" width="150" height="25" rx="12" fill={isActive('P1') ? '#4CAF50' : '#ccc'} stroke="#333" strokeWidth="2"/>
           <circle cx="110" cy="132" r="8" fill="#666"/>
           <circle cx="240" cy="132" r="8" fill="#666"/>
-          <text x="120" y="110" fontSize="12" fill="#333">Band 1</text>
-          <text x="115" y="100" fontSize="12" fill="#333">Conveyor 1</text>
+          <text x="120" y="110" fontSize="12" fill="#333">Banda 1</text>
           
-          {/* Motor M1 */}
           <circle cx="80" cy="160" r="15" fill={isActive('P1') ? '#FF9800' : '#ccc'} stroke="#333" strokeWidth="2"/>
           <text x="75" y="165" fontSize="10" fill="white" fontWeight="bold">M</text>
           <text x="60" y="180" fontSize="10" fill="#333">M1</text>
 
-          {/* Band 2 (Conveyor 2) */}
           <rect x="350" y="120" width="150" height="25" rx="12" fill={isActive('P2') ? '#4CAF50' : '#ccc'} stroke="#333" strokeWidth="2"/>
           <circle cx="360" cy="132" r="8" fill="#666"/>
           <circle cx="490" cy="132" r="8" fill="#666"/>
-          <text x="370" y="110" fontSize="12" fill="#333">Band 2</text>
-          <text x="365" y="100" fontSize="12" fill="#333">Conveyor 2</text>
+          <text x="370" y="110" fontSize="12" fill="#333">Banda 2</text>
           
-          {/* Motor M2 */}
           <circle cx="520" cy="160" r="15" fill={isActive('P2') ? '#FF9800' : '#ccc'} stroke="#333" strokeWidth="2"/>
           <text x="515" y="165" fontSize="10" fill="white" fontWeight="bold">M</text>
           <text x="525" y="180" fontSize="10" fill="#333">M2</text>
 
-          {/* Central sorting mechanism with flap */}
           <g transform="translate(300,200)">
-            {/* Flap mechanism */}
             <g>
-              {/* S7 center position indicator */}
               <line x1="-20" y1="0" x2="20" y2="0" stroke="#333" strokeWidth="2"/>
               <text x="-10" y="-10" fontSize="10" fill="#333">S7</text>
               
-              {/* Flap */}
               <g transform={
                 getFlap() === "left" ? "rotate(-30)" : 
                 getFlap() === "right" ? "rotate(30)" : "rotate(0)"
@@ -65,52 +51,40 @@ const ConveyorDiagram = ({ data }) => {
                 <rect x="-25" y="-3" width="50" height="6" fill={isAlarmActive ? '#f44336' : '#2196F3'} stroke="#333" strokeWidth="1"/>
               </g>
               
-              {/* S6 and S8 position indicators */}
               <text x="-35" y="15" fontSize="10" fill="#333">S6</text>
               <text x="25" y="15" fontSize="10" fill="#333">S8</text>
             </g>
             
-            {/* Sorting paths */}
             <path d="M-30,-20 L-80,50" stroke="#333" strokeWidth="2" fill="none"/>
             <path d="M30,-20 L80,50" stroke="#333" strokeWidth="2" fill="none"/>
           </g>
 
-          {/* Band 3 (Conveyor 3) */}
           <rect x="100" y="300" width="150" height="25" rx="12" fill={isActive('P3') ? '#4CAF50' : '#ccc'} stroke="#333" strokeWidth="2"/>
           <circle cx="110" cy="312" r="8" fill="#666"/>
           <circle cx="240" cy="312" r="8" fill="#666"/>
-          <text x="120" y="290" fontSize="12" fill="#333">Band 3</text>
-          <text x="115" y="280" fontSize="12" fill="#333">Conveyor 3</text>
-          
-          {/* Motor M3 */}
+          <text x="120" y="290" fontSize="12" fill="#333">Banda 3</text>
+
           <circle cx="80" cy="340" r="15" fill={isActive('P3') ? '#FF9800' : '#ccc'} stroke="#333" strokeWidth="2"/>
           <text x="75" y="345" fontSize="10" fill="white" fontWeight="bold">M</text>
           <text x="60" y="360" fontSize="10" fill="#333">M3</text>
 
-          {/* Band 4 (Conveyor 4) */}
           <rect x="350" y="380" width="150" height="25" rx="12" fill={isActive('P4') ? '#4CAF50' : '#ccc'} stroke="#333" strokeWidth="2"/>
           <circle cx="360" cy="392" r="8" fill="#666"/>
           <circle cx="490" cy="392" r="8" fill="#666"/>
-          <text x="370" y="370" fontSize="12" fill="#333">Band 4</text>
-          <text x="365" y="360" fontSize="12" fill="#333">Conveyor 4</text>
-          
-          {/* Motor M4 */}
+          <text x="370" y="370" fontSize="12" fill="#333">Banda 4</text>
+
           <circle cx="520" cy="420" r="15" fill={isActive('P4') ? '#FF9800' : '#ccc'} stroke="#333" strokeWidth="2"/>
           <text x="515" y="425" fontSize="10" fill="white" fontWeight="bold">M</text>
           <text x="525" y="440" fontSize="10" fill="#333">M4</text>
 
-          {/* Sensors */}
           <g>
-            {/* Sensor 1 */}
             <rect x="50" y="200" width="15" height="20" fill={sensorActive('sensor1') ? '#ff4444' : '#ddd'} stroke="#333" strokeWidth="1"/>
             <text x="25" y="215" fontSize="10" fill="#333">Senzor 1</text>
             
-            {/* Sensor 2 */}
             <rect x="535" y="200" width="15" height="20" fill={sensorActive('sensor2') ? '#ff4444' : '#ddd'} stroke="#333" strokeWidth="1"/>
             <text x="510" y="235" fontSize="10" fill="#333">Senzor 2</text>
           </g>
 
-          {/* Flow arrows */}
           {isActive('P1') && (
             <>
               <defs>
@@ -139,7 +113,6 @@ const ConveyorDiagram = ({ data }) => {
             </>
           )}
 
-          {/* Alarm indicator */}
           {isAlarmActive && (
             <g>
               <circle cx="300" cy="450" r="20" fill="#ff4444" stroke="#cc0000" strokeWidth="3">
@@ -152,7 +125,6 @@ const ConveyorDiagram = ({ data }) => {
         </svg>
       </div>
 
-      {/* Control Panel */}
       <div style={{ flex: 1, minWidth: '250px' }}>
         <div style={{ 
           border: '2px solid #333', 
@@ -162,7 +134,6 @@ const ConveyorDiagram = ({ data }) => {
           color: 'white',
           minHeight: '500px'
         }}>
-          {/* Main switches */}
           <div style={{ marginBottom: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
               <div style={{ 
@@ -173,7 +144,6 @@ const ConveyorDiagram = ({ data }) => {
                 marginRight: '10px',
                 border: '2px solid #666'
               }}></div>
-              <span style={{ fontSize: '12px' }}>S0 AUS</span>
               <div style={{ 
                 width: '30px', 
                 height: '30px', 
@@ -190,7 +160,6 @@ const ConveyorDiagram = ({ data }) => {
             </div>
           </div>
 
-          {/* Band controls */}
           {['P1', 'P2', 'P3', 'P4'].map((band, index) => (
             <div key={band} style={{ display: 'flex', alignItems: 'center', marginBottom: '15px' }}>
               <div style={{ 
@@ -225,13 +194,9 @@ const ConveyorDiagram = ({ data }) => {
                   {isActive(band) ? 'ON' : 'OFF'}
                 </div>
               </div>
-              <span style={{ fontSize: '9px', marginLeft: '8px' }}>
-                Band {index + 1} ein<br/>Conveyor {index + 1} on
-              </span>
             </div>
           ))}
 
-          {/* Band 4-2 control */}
           <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
             <div style={{ 
               width: '25px', 
@@ -241,16 +206,9 @@ const ConveyorDiagram = ({ data }) => {
               marginRight: '10px',
               border: '2px solid #666'
             }}></div>
-            <span style={{ fontSize: '9px' }}>
-              S5 Band 4-2 aus<br/>Conveyor<br/>1-2 off
-            </span>
           </div>
 
-          {/* Flap controls */}
           <div style={{ marginTop: '20px' }}>
-            <div style={{ fontSize: '10px', marginBottom: '10px' }}>Weichenstellung</div>
-            <div style={{ fontSize: '10px', marginBottom: '5px' }}>Switch setting</div>
-            <div style={{ fontSize: '10px', marginBottom: '10px' }}>mechanism</div>
             
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               {['S6', 'S7', 'S8'].map((pos, index) => (
@@ -269,7 +227,6 @@ const ConveyorDiagram = ({ data }) => {
             </div>
           </div>
 
-          {/* Status indicators */}
           <div style={{ marginTop: '30px', fontSize: '10px' }}>
             <div style={{ marginBottom: '5px' }}>
               Senzor 1: <span style={{ color: sensorActive('sensor1') ? '#ff4444' : '#888' }}>

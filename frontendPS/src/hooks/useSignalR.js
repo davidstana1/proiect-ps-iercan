@@ -7,24 +7,23 @@ export function useSignalR() {
 
   useEffect(() => {
     const connection = new signalR.HubConnectionBuilder()
-      .withUrl("http://localhost:5195/hub") // Changed from 5000 to 5195
+      .withUrl("http://localhost:5195/hub")
       .withAutomaticReconnect()
       .build();
 
     connection.start().then(() => {
-      console.log("✅ Conectat la SignalR");
+      console.log("Conectat la SignalR");
       setConnectionStatus("Connected");
       
       connection.on("ReceiveUpdate", (update) => {
-        console.log("📦 Actualizare primită:", update);
+        console.log("Actualizare primită:", update);
         setData(update);
       });
     }).catch(err => {
-      console.error("❌ Eroare conexiune SignalR:", err);
+      console.error("Eroare conexiune SignalR:", err);
       setConnectionStatus("Connection Failed");
     });
 
-    // Handle connection state changes
     connection.onclose(() => {
       setConnectionStatus("Disconnected");
     });

@@ -1955,11 +1955,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/david/Desktop/proiect sincretic/backendPS/backendPS/backendPS.csproj",
+      "projectUniqueName": "/home/david/Desktop/proiect-ps-iercan/backendPS/backendPS/backendPS.csproj",
       "projectName": "backendPS",
-      "projectPath": "/home/david/Desktop/proiect sincretic/backendPS/backendPS/backendPS.csproj",
+      "projectPath": "/home/david/Desktop/proiect-ps-iercan/backendPS/backendPS/backendPS.csproj",
       "packagesPath": "/home/david/.nuget/packages/",
-      "outputPath": "/home/david/Desktop/proiect sincretic/backendPS/backendPS/obj/",
+      "outputPath": "/home/david/Desktop/proiect-ps-iercan/backendPS/backendPS/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/david/.nuget/NuGet/NuGet.Config"
